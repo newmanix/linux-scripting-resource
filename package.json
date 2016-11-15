@@ -4,9 +4,13 @@
   "description": "class project for command line automation",
   "main": "index.js",
   "scripts": {
-    	"gitAll": "git add . && git commit",
-	"test": "echo \"Error: no test specified\" && exit 1"
+	"postgitAll":"echo 'your stuff has been committed!' && git status",
+    "gitAll": "git add . && git commit",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Gus Crowley",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.9.0"
+  }
 }
