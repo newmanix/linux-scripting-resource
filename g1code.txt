@@ -1,0 +1,23 @@
+First, if you don't already have it, you will need to install the command line utility suite ImageMagick:
+
+<---start code-->
+sudo apt-get install imagemagick
+# sudo is the command that tells Linux to run the following command as root
+# apt is the Advanced Packaging Tool, and apt-get tells it to find and download the tool that is named
+# install tells it to install
+# imagemagick is the name of the package
+
+<--end code-->
+
+
+<--start code-->
+# figure out how to maintain the image name during conversion
+# move files to a different directory for final files
+convert ~/images-raw/*.png -quality 95 *.jpg
+# converts any png image in the images-raw directory into jpg files with a 95% compression
+convert ~/images-raw/*.gif -quality 95 *.jpg
+# converts any gif image in the images-raw directory into jpg files with a 95% compression
+convert ~/images-raw/*.jpg -resize x500 *.jpg
+# resizes any jpg image in the images-raw directory to a height of 500 pixels, maintaining aspect ratio
+
+<--end code-->
