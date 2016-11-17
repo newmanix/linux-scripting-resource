@@ -12,7 +12,11 @@ Scripts executed as a cron job are typically used to modify files or databases. 
 
 
 [Who typically uses them]
-Lorem Lorem Lorem...............
+System Administrators
+-
+-
+-
+-
 
 [Elements of a Cron Job:]
 Most cron jobs include three components:
@@ -61,3 +65,6 @@ http://askubuntu.com/questions/23009/reasons-why-crontab-does-not-work
 
 http://www.nncron.ru/help/EN/working/cron-format.htm#STARTTIME
 
+[Citations]
+http://www.makeuseof.com/tag/5-beginner-linux-setup-ideas-cron-jobs-shell-scripts/
+http://support.hostgator.com/articles/cpanel/what-are-cron-jobs
