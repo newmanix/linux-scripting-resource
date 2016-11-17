@@ -2,3 +2,6 @@ LINUX Shell Scripting Resource: For the next few assignments we’ll work on a w
 
 
 Benefits: Doing this work will allow to dig deeper as individuals into topics within the UNIX/LINUX scripting world.  It will stand as a resource to which you contributed, going forward as it will be available on the web.   Creating such a resource allows us to deepen our knowledge on this subject, work together as a larger team, invoke some scrum group processes and add to our github repos and resume.
+
+
+Adding some text to test Slack integration
