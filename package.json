@@ -4,13 +4,17 @@
   "description": "class project for command line automation",
   "main": "index.js",
   "scripts": {
-	"postgitAll":"echo 'your stuff has been committed!' && git status",
+    "postgitAll": "echo 'your stuff has been committed!' && git status",
     "gitAll": "git add . && git commit",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo '=>running tests!' && mocha ",
+    "start": "cowsay 'congrats, you started a server' "
   },
   "author": "Gus Crowley",
   "license": "ISC",
   "dependencies": {
     "commander": "^2.9.0"
+  },
+  "devDependencies": {
+    "cowsay": "^1.1.8"
   }
 }
