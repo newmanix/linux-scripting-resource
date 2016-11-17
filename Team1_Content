@@ -39,6 +39,8 @@ VPS and Dedicated Server:
 You may run a cron job as often as desired.
 It isn’t suitable for complex, event-driven tasks.
 Not flexible for running tasks
+No queueing for cron: no specific ordering of jobs. 
+Won’t be able to protectresources from having too many things running out of it at once.
 
 [Learn More:]
 http://www.unixgeeks.org/security/newbie/unix/cron-1.html
@@ -52,3 +54,4 @@ http://www.nncron.ru/help/EN/working/cron-format.htm#STARTTIME
 [Citations]
 1 http://www.makeuseof.com/tag/5-beginner-linux-setup-ideas-cron-jobs-shell-scripts/
 2 http://support.hostgator.com/articles/cpanel/what-are-cron-jobs
+3 https://www.helpsystems.com/resources/articles/cron-scheduling-old-fallback
