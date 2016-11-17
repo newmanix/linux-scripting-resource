@@ -74,6 +74,11 @@ done
 
 Paste that into a text file called convert_script.sh, save it in your home directory, and type bash convert_script.sh into the command line. You should see something like this:
 
+<beforerun.jpg>
+<afterrun.jpg>
+
+You can see in the first picture that the files on the left sidebar are in the images_raw directory, and then in the second picture the new jpgs are in the converted_images directory. You can also see in the console that it lists off the file names as it runs through the loop.
+
 
 
 There are always refinements you can add to it, extra things that will double check to make sure the new files really are jpgs, or tests for errors. But this is a basic script.
