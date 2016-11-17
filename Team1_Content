@@ -2,10 +2,10 @@
 [Graphic Example 1]
 http://www.networknuts-web.biz/wp-content/uploads/2014/10/cron-logo.png
 
-1[What is a cron?] 
+[What is a cron?] 
 Cron jobs are simply bash scripts that run when you boot up your computer and when certain time conditions have been met. For them, you write your script, save it, and then run a command to add a new cron job that points to the location of the newly-saved script.
 
-2[What are they good for?]
+[What are they good for?]
 cron is a Linux/Unix utility which schedules a command or script on your server to run automatically at a specified time and date. A cron job is the scheduled task itself. Cron jobs can be very useful to automate repetitive tasks.
 
 For example, you can set a cron job to delete temporary files every week to conserve your disk space. Some programs, such as Drupal, may even require you to set up a cron job to perform certain functions.
@@ -33,21 +33,14 @@ The command that executes the script on a recurring basis (typically set in the 
 The action or output of the script (which depends on what the script being called does).
 
 [Cron Job Limits]
-Shared and Reseller
+Shared and Reseller:
 You may NOT run a cron job more often than every 15 minutes.
-VPS and Dedicated Server
+VPS and Dedicated Server:
 You may run a cron job as often as desired.
 It isn’t suitable for complex, event-driven tasks.
 Not flexible for running tasks
 
-
-[Common mistakes]
-
-Lorem Lorem Lorem
-
-
-
-Learn More:
+[Learn More:]
 http://www.unixgeeks.org/security/newbie/unix/cron-1.html
 https://en.wikipedia.org/wiki/Cron
 https://www.thesitewizard.com/general/set-cron-job.shtml
