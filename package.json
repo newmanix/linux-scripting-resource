@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postgitAll": "echo 'your stuff has been committed!' && git status",
-    "gitAll": "git add . && git commit",
+    "gitAll": "echo '=>Get ready to commit all your files' && git add . && git commit",
     "test": "echo '=>running tests!' && mocha ",
     "start": "cowsay 'congrats, you started a server' "
   },
@@ -15,6 +15,7 @@
     "commander": "^2.9.0"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "cowsay": "^1.1.8"
   }
 }
