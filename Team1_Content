@@ -1,8 +1,12 @@
-[What is a cron?] 
+
+[Graphic Example 1]
+http://www.networknuts-web.biz/wp-content/uploads/2014/10/cron-logo.png
+
+1[What is a cron?] 
 Cron jobs are simply bash scripts that run when you boot up your computer and when certain time conditions have been met. For them, you write your script, save it, and then run a command to add a new cron job that points to the location of the newly-saved script.
 
-[What are they good for?]
-cron is a Linux utility which schedules a command or script on your server to run automatically at a specified time and date. A cron job is the scheduled task itself. Cron jobs can be very useful to automate repetitive tasks.
+2[What are they good for?]
+cron is a Linux/Unix utility which schedules a command or script on your server to run automatically at a specified time and date. A cron job is the scheduled task itself. Cron jobs can be very useful to automate repetitive tasks.
 
 For example, you can set a cron job to delete temporary files every week to conserve your disk space. Some programs, such as Drupal, may even require you to set up a cron job to perform certain functions.
 
@@ -10,13 +14,17 @@ Also, you might use a cron job to send out an email report on a daily basis, or 
 
 Scripts executed as a cron job are typically used to modify files or databases. However, they can perform other tasks that do not modify data on the server, like sending out email notifications.
 
+[Graphic Example 3] 
+http://www.pc-freak.net/images/crontab-execute-cron-jobs-every-second-on-linux-cron-logo.png
 
 [Who typically uses them]
-System Administrators
--
--
--
--
+-System Administrators
+-Database Administrators
+-Power Users
+-Developers
+
+[Graphic Example 2]
+https://c.marketingtechblog.com/wp-content/uploads/2008/01/cron.jpg
 
 [Elements of a Cron Job:]
 Most cron jobs include three components:
@@ -38,33 +46,16 @@ Not flexible for running tasks
 Lorem Lorem Lorem
 
 
-Images:
-http://www.networknuts-web.biz/wp-content/uploads/2014/10/cron-logo.png
-http://www.pc-freak.net/images/crontab-execute-cron-jobs-every-second-on-linux-cron-logo.png
-https://c.marketingtechblog.com/wp-content/uploads/2008/01/cron.jpg
 
-
-Resources:
+Learn More:
 http://www.unixgeeks.org/security/newbie/unix/cron-1.html
-
-
 https://en.wikipedia.org/wiki/Cron
-
-
 https://www.thesitewizard.com/general/set-cron-job.shtml
-
-
 https://en.wikipedia.org/wiki/Ken_Thompson
-
-
 http://www.alleft.com/sysadmin/common-cron-mistakes/
-
-
 http://askubuntu.com/questions/23009/reasons-why-crontab-does-not-work
-
-
 http://www.nncron.ru/help/EN/working/cron-format.htm#STARTTIME
 
 [Citations]
-http://www.makeuseof.com/tag/5-beginner-linux-setup-ideas-cron-jobs-shell-scripts/
-http://support.hostgator.com/articles/cpanel/what-are-cron-jobs
+1 http://www.makeuseof.com/tag/5-beginner-linux-setup-ideas-cron-jobs-shell-scripts/
+2 http://support.hostgator.com/articles/cpanel/what-are-cron-jobs
