@@ -12,7 +12,6 @@
   "author": "Gus Crowley",
   "license": "ISC",
   "dependencies": {
-    "commander": "^2.9.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
