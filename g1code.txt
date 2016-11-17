@@ -3,21 +3,71 @@ First, if you don't already have it, you will need to install the command line u
 <---start code-->
 sudo apt-get install imagemagick
 # sudo is the command that tells Linux to run the following command as root
-# apt is the Advanced Packaging Tool, and apt-get tells it to find and download the tool that is named
-# install tells it to install
+# apt is the Advanced Packaging Tool, and apt-get tells it to find and download the package that is named
+# install tells it to install the package after downloading
 # imagemagick is the name of the package
 
 <--end code-->
 
 
 <--start code-->
-# figure out how to maintain the image name during conversion
-# move files to a different directory for final files
-convert ~/images-raw/*.png -quality 95 *.jpg
-# converts any png image in the images-raw directory into jpg files with a 95% compression
-convert ~/images-raw/*.gif -quality 95 *.jpg
-# converts any gif image in the images-raw directory into jpg files with a 95% compression
-convert ~/images-raw/*.jpg -resize x500 *.jpg
-# resizes any jpg image in the images-raw directory to a height of 500 pixels, maintaining aspect ratio
+# here follows simple commands to convert and resize files with ImageMagick
+convert ~/images_raw/spoon.png -quality 95 spoon.jpg
+# converts the png "spoon" in the images-raw directory into a jpg file with a 95% compression
+convert ~/images_raw/spork.jpg -resize x500 spork.jpg
+# resizes the jpg "spork" in the images-raw directory to a height of 500 pixels, maintaining aspect ratio
 
 <--end code-->
+
+But what we really want here is a script that will do the following things:
+1) Grab a png image
+2) Save the name from the png to give to the jpg
+3) Convert the png to a jpg
+4) Move the new file to a different directory
+5) Remove the old png file
+
+We're also going to have it output the old file name and new file name so we can see it's working. Here's what a simple version of that looks like:
+
+<--begin code-->
+# begins a for loop
+# for every file name that ends in .png                                                                                                    
+for FILENAME in *.png
+# do the following                                                                             
+do
+    # create a variable called NEWFILENAME and make it the old FILENAME 
+    # with .jpg substituted for .png
+    # See documentation below for an explanation of Shell Parameter Expansion                                                                                                
+    NEWFILENAME="${FILENAME/%.png/.jpg}"
+		# this prints to the screen (echo) while allowing escape characters like tab (-e)
+		# the old file name and the new file name, so you can see that it's working 
+		# \t is a tab, so that the old file name and new file name line up neatly
+		echo -e "Old name: $FILENAME\t" "New name: $NEWFILENAME"  
+    # this is the convert command we used above, converting the file with the old name
+    # to the jpg file and giving it the new name
+    # && says that if and only if the previous command ran properly, do the next thing                           
+    convert "$FILENAME" "$NEWFILENAME" && \
+        # move the thing called NEWFILENAME to the converted_images folder 
+        mv "$NEWFILENAME" converted_images/ && \
+        # remove the old file                                                      
+        rm "$FILENAME"
+# done ends the do command, defining the point at which a single loop stops
+# and then, because this is a loop, it does it to every file that ends in .png in the directory
+done
+<--end code-->
+
+There are always refinements you can add to it, extra things that will double check to make sure the new files really are jpgs, or tests for errors.
+
+
+
+
+
+
+Documentation for 3.5.3 Shell Parameter Expansion:
+
+<blockquote>${parameter/pattern/string}
+
+<br>The pattern is expanded to produce a pattern just as in filename expansion. Parameter is expanded and the longest match of pattern against its value is replaced with string. If pattern begins with ‘/’, all matches of pattern are replaced with string. Normally only the first match is replaced. If pattern begins with ‘#’, it must match at the beginning of the expanded value of parameter. If pattern begins with ‘%’, it must match at the end of the expanded value of parameter. If string is null, matches of pattern are deleted and the / following pattern may be omitted. If the nocasematch shell option (see the description of shopt in The Shopt Builtin) is enabled, the match is performed without regard to the case of alphabetic characters. If parameter is ‘@’ or ‘*’, the substitution operation is applied to each positional parameter in turn, and the expansion is the resultant list. If parameter is an array variable subscripted with ‘@’ or ‘*’, the substitution operation is applied to each member of the array in turn, and the expansion is the resultant list</blockquote>
+ 
+<br>-From <a href=https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html>the bash manual</A>.
+
+So <B>NEWFILENAME="${FILENAME/%.png/.jpg}"</B> says that the pattern for NEWFILENAME is to take a FILENAME that ends in .png and to copy it but replace .png with .jpg.
