@@ -1,20 +1,29 @@
-So youíre setting up a server for your website and youíve decided to go with the LAMP stack. 
-This requires installing Linux, Apache, PHP, and MySQLÖ.but you just donít have a lot of time. 
+So you‚Äôre setting up a server for your website and you‚Äôve decided to go with the LAMP stack. 
+This requires installing Linux, Apache, PHP, and MySQL‚Ä¶.but you just don‚Äôt have a lot of time. 
 Sure would be nice if there was a way to automate the process, kind of do it all in one step!
 
-Ok, some of you may be new to this and wondering ìWhat is the LAMP stack?î Letís start with 
-a ìstackî which is simply a group of applications or programs placed on a server to support 
+Ok, some of you may be new to this and wondering ‚ÄúWhat is the LAMP stack?‚Äù Let‚Äôs start with 
+a ‚Äústack‚Äù which is simply a group of applications or programs placed on a server to support 
 websites. These programs work together and support the various pieces of the website. The 
 LAMP stack, as you may have guessed, includes the abovementioned programs: Linux, Apache, 
 MySQL, and PHP/Python/Perl (depends which of the three you choose to work with.) 
 
-Hereís a really great definition* of LAMP stack: LAMP stack is a popular open source web 
+Here‚Äôs a really great definition* of LAMP stack: LAMP stack is a popular open source web 
 platform commonly used to run dynamic web sites and servers. It includes Linux, Apache, MySQL, 
 and PHP/Python/Perl and is considered by many the platform of choice for development and 
 deployment of high performance web applications which require a solid and reliable foundation. 
-Itís important to note the piece about it being open source, because who doesnít like free, 
-especially when youíre starting out?!
+It‚Äôs important to note the piece about it being open source, because who doesn‚Äôt like free, 
+especially when you‚Äôre starting out?!
 *found at https://www.turnkeylinux.org/lampstack
 
-Alright, now that weíve got the basics out of the way, letís dig into the How-To of installing 
-this stack in one easy step.
+Alright, now that we‚Äôve got the basics out of the way, let‚Äôs dig into the How-To of installing this stack in one easy step. First, you will need to have root privileges on your virtual private server (VPS). It will probably be running Ubuntu already, but if not you‚Äôll want to install that first.
+
+
+Here‚Äôs a snip-it of the code used to execute installing the LAMP.  
+
+
+<<<<<<<insert lamp code here>>>>>>>>>
+
+
+For a more in depth step by step process look here: <a href= ‚Äùhttps://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu‚Äù>LAMP Installation Guide </a>
+
