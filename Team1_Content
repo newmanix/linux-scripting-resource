@@ -1,4 +1,47 @@
+What is a cron? 
+Cron jobs are simply bash scripts that run when you boot up your computer and when certain time conditions have been met. For them, you write your script, save it, and then run a command to add a new cron job that points to the location of the newly-saved script.
 
-What is Lorem Ipsum?
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+What are they good for?
+cron is a Linux utility which schedules a command or script on your server to run automatically at a specified time and date. A cron job is the scheduled task itself. Cron jobs can be very useful to automate repetitive tasks.
+For example, you can set a cron job to delete temporary files every week to conserve your disk space. Some programs, such as Drupal, may even require you to set up a cron job to perform certain functions.
+Scripts executed as a cron job are typically used to modify files or databases. However, they can perform other tasks that do not modify data on the server, like sending out email notifications.
+
+
+Who typically uses them:
+Lorem Lorem Lorem...............
+
+Elements of a Cron Job:
+Most cron jobs include three components:
+The script that is to be called or executed.
+The command that executes the script on a recurring basis (typically set in the cPanel).
+The action or output of the script (which depends on what the script being called does).
+
+Cron Job Limits
+Shared and Reseller
+You may NOT run a cron job more often than every 15 minutes.
+VPS and Dedicated Server
+You may run a cron job as often as desired.
+
+
+Common mistakes:
+
+Lorem Lorem Lorem
+
+Resources:
+http://www.unixgeeks.org/security/newbie/unix/cron-1.html
+
+
+https://en.wikipedia.org/wiki/Cron
+
+
+https://www.thesitewizard.com/general/set-cron-job.shtml
+
+
+https://en.wikipedia.org/wiki/Ken_Thompson
+
+
+http://www.alleft.com/sysadmin/common-cron-mistakes/
+
+
+http://askubuntu.com/questions/23009/reasons-why-crontab-does-not-work
+
