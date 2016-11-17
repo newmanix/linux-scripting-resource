@@ -1,0 +1,32 @@
+﻿Regex Tutorial - Working Doc to gather samples
+
+
+Regular Expression Examples that can be included for webpage
+
+
+These are basic regular expressions that do not require any options
+
+
+* - match zero or more characters
+. - match any single character
+    example - a*t would match any string of characters starting with “a” and ending with “t”; including at, art, aspect, etc.
+        - a.t would match any 3 characters starting with “a” and ending with “t”; including art, ant but not at or aspect
+
+
+^ - anchor for start of line
+$ - anchor for end of line
+    example - ls -l | grep ^- shows only lines starting with “-” which are the files not folders 
+            - ^$ would match empty lines
+
+
+[...] - provide explicit list of matching characters
+    example - [aeiou] would match any vowel
+            - [0-9] uses a range specifier to match any numeral
+
+
+[^...] - provide explicit list of characters not to match
+    example - [^aeiou] would match any character that is not a vowel 
+
+
+<> - provide whole words to match
+    example - <sand> matches the whole word "sand" but not “sandbox”
