@@ -19,7 +19,7 @@ convert ~/images_raw/spork.jpg -resize x500 spork.jpg
 
 <--end code-->
 
-But what we really want here is a script that will do the following things:
+But what we really want here is a script that we can schedule to run at regular intervals, and we need it to do the following things:
 1) Grab a png image
 2) Save the name from the png to give to the jpg
 3) Convert the png to a jpg
