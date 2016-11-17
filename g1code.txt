@@ -29,8 +29,10 @@ But what we really want here is a script that we can schedule to run at regular 
 We're also going to have it output the old file name and new file name so we can see it's working. Here's what a simple version of that looks like:
 
 <--begin code-->
+#cd is change directory, and then the directory you want it to work in
+~/images_raw/
 # begins a for loop
-# for every file name that ends in .png                                                                                                    
+# for every file name that ends in .png                                                                                                 
 for FILENAME in *.png
 # do the following                                                                             
 do
