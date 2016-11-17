@@ -1,21 +1,22 @@
 First, if you don't already have it, you will need to install the command line utility suite ImageMagick:
 
 <---start code-->
-sudo apt-get install imagemagick
 # sudo is the command that tells Linux to run the following command as root
 # apt is the Advanced Packaging Tool, and apt-get tells it to find and download the package that is named
 # install tells it to install the package after downloading
 # imagemagick is the name of the package
+sudo apt-get install imagemagick
+
 
 <--end code-->
 
 
 <--start code-->
 # here follows simple commands to convert and resize files with ImageMagick
-convert ~/images_raw/spoon.png -quality 95 spoon.jpg
 # converts the png "spoon" in the images-raw directory into a jpg file with a 95% compression
-convert ~/images_raw/spork.jpg -resize x500 spork.jpg
+convert ~/images_raw/spoon.png -quality 95 spoon.jpg
 # resizes the jpg "spork" in the images-raw directory to a height of 500 pixels, maintaining aspect ratio
+convert ~/images_raw/spork.jpg -resize x500 spork.jpg
 
 <--end code-->
 
