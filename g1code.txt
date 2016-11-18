@@ -97,3 +97,54 @@ Documentation for 3.5.3 Shell Parameter Expansion:
 <br>-From <a href=https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html>the bash manual</A>.
 
 So <B>NEWFILENAME="${FILENAME/%.png/.jpg}"</B> says that the pattern for NEWFILENAME is to take a FILENAME that ends in .png and to copy it but replace .png with .jpg.
+
+
+Now we just need to schedule the cron job!
+
+First, open a new file in a text editor -- make sure it's a text editor and not a word processor -- and start with a MAILTO command. MAILTO tells crontab you want to be emailed with output from the job. On the next line, we'll tell it to discard everything but error messages, so that you only get notified if something goes wrong. A MAILTO command is just MAILTO=youremail@example.com, with whatever your actual email is.
+
+On a new line (very important), you're going to specify WHEN to schedule it. The first place is minutes (00-60), the second is hours (00-24, on 24-hour time, not 12-hour), the third is days (00-31), the fourth is months (00-12), and the fifth is day of the week (0-7). You can tell it to run every hour at fifteen minutes past the hour, every day at 12:15am, the first of every month, the fifth of May every year, or every Tuesday and Thursday, just for a few examples. Commas separate different schedulings within the same time from (00,30 in the minutes slot for on the hour and half hour, eg, or 3,5 in the days of the week slot for Tuesday and Thursday), and asterisks (*) says every instance of that slot (so, 00,30 * for every hour on the hour and half hour). Then you designate the path of the script to be run. This is followed by any other commands you want it to run when it runs your script. The commands MUST be on the same line as the scheduling. We're going to tell it to send all normal outputs to dev/null (which is like a trash can that's immediately emptied, or a black hole). Error messages, not being normal outputs, will go to the email address provided.
+
+End your file with a new line, always.
+
+We're going to schedule ours at 11:59pm every night. It looks like this:
+
+<--begin code>
+# the MAILTO line tells it to email you any output that is not otherwise directed
+MAILTO=youremail@gmail.com
+# this says that at 59 minutes past the 23rd hour (11pm)
+# on every day of every month of every year
+# so every day at 11:59pm
+# to run the script at ~/workspace/convert.sh
+# all output EXCEPT error messages will go to dev/null, which is like the trash
+# error messages go to your email
+59 23 * * * ~/workspace/convert.sh >/dev/null 
+#new line to end the file
+
+<--end code-->
+
+Or, without comments:
+
+<--begin code-->
+MAILTO=youremail@gmail.com
+59 23 * * * ~/workspace/convert.sh >/dev/null 
+<--end code-->
+
+Save the text file as cronjob.txt or something else that you'll recognize.
+
+Now you need to tell crontab that your text file is something it should pay attention to. Crontab installs your scheduling into cronjob, which will then actually run it at the specified time.
+
+Go to the command line and tell it to go to the directory your scheduling file is in, and then use the crontab command to tell it to pay attention to your job.
+
+(The $ below is the prompt, you don't type it. Hit return between commands.)
+
+<--begin code-->
+$ cd ~/workspace
+$ crontab cronjob.txt
+<--end code-->
+
+You can also view all of your scheduled jobs with the command crontab -l (that's a lowercase L, not a 1), and remove them all with crontab -r.
+
+Put all of your cron jobs into the same file. Designate your email once, at the top of the file, and then one line for each scheduled job and any commands related to it. End the file with a new line. 
+
+For more on cron jobs, check out The Site Wizard (https://www.thesitewizard.com/general/set-cron-job.shtml).
