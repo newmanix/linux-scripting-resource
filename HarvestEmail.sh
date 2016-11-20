@@ -46,23 +46,67 @@ else   # we have enough arguments
         then # searchfile exists
             echo "}}   Searching $searchfile"
             
-            # harvest emails from searchfile
-            grep -i -o '[A-Z0-9._%+-]\+@[A-Z0-9.-]\+\.[A-Z]\{2,4\}' $searchfile >> $TargetFile
+            # begin harvest emails from searchfile
+            # create temp copy for processing
+            cp $searchfile workfile1.txt -f
             
-            grep -i -o '[A-Z0-9._%+-]\+@[A-Z0-9.-]\+\.[A-Z]\{2,4\}' $searchfile | wc -l > countfile.txt
+            if [ $? -eq 0 ]
+            then # successfully copied this searchfile to workfile.txt
             
-            let filecount=`cat countfile.txt`
-            let emailcount=$emailcount+$filecount
-            
-            echo "}}     $filecount emails harvested"
+                # first remove and replace any common mungings to make valid emails
+                sed -i -- 's/\[@\]/@/g' workfile1.txt
+                sed -i -- 's/\.at\./@/gI' workfile1.txt
+                sed -i -- 's/ at /@/gI' workfile1.txt
+                sed -i -- 's/ (@) /@/gI' workfile1.txt
+                sed -i -- 's/(@)/@/gI' workfile1.txt
+                sed -i -- 's/ [@] /@/gI' workfile1.txt
+                sed -i -- 's/ (at) /@/gI' workfile1.txt
+                sed -i -- 's/(at)/@/gI' workfile1.txt
+                sed -i -- 's/&#064;/@/g' workfile1.txt
+                
+                sed -i -- 's/\.dot\././gI' workfile1.txt
+                sed -i -- 's/ dot /./gI' workfile1.txt
+                sed -i -- 's/ (dot) /./gI' workfile1.txt
+                sed -i -- 's/(dot)/./gI' workfile1.txt
+                sed -i -- 's/\.invalid//gI' workfile1.txt
+
+               # last remove any common "REMOVEME" mungings
+                sed -i -- 's/\.REMOVETHIS\././g' workfile1.txt
+                sed -i -- 's/\.REMOVETHIS//g' workfile1.txt
+                sed -i -- 's/REMOVETHIS//g' workfile1.txt
+                sed -i -- 's/\.REMOVEME\././g' workfile1.txt
+                sed -i -- 's/\.REMOVEME\././g' workfile1.txt
+                sed -i -- 's/REMOVEME//g' workfile1.txt
+                sed -i -- 's/\.REMOVE\././g' workfile1.txt
+                sed -i -- 's/\.REMOVE//g' workfile1.txt
+                sed -i -- 's/REMOVE/./g' workfile1.txt
+                
+                # second grep for valid emails
+                grep -i -o '[A-Z0-9._%+-]\+@[A-Z0-9.-]\+\.[A-Z]\{2,4\}' workfile1.txt > workfile2.txt
+                
+                cat workfile2.txt >> $TargetFile
+                cat workfile2.txt | wc -w > countfile.txt
+                        
+                let filecount=`cat countfile.txt`
+                let emailcount=$emailcount+$filecount
+                
+                echo "}}     $filecount emails harvested"
+            else # error returned when copying searchfile
+                echo "** File IO ERROR searching file $searchfile"
+                ReturnFlag="1"  
+            fi
         else # searchfile does not exist
-            echo "**  File to be searched  $searchfile does not exist"
+            echo "**  ERROR File $searchfile does not exist"
             ReturnFlag="2"                  
         fi
     done
 fi
+
+# cleanup temp files
+rm countfile.txt workfile1.txt workfile2.txt
+
 echo "}}   Total emails harvested was $emailcount"  
-echo "}}   HarvestEmail.sh returns $ReturnFlag"
+echo "}}   HarvestEmail.sh returns errorlevel $ReturnFlag"
 echo "}} HarvestEmail.sh terminated at `date`"
 exit $ReturnFlag
  
