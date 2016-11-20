@@ -29,7 +29,7 @@ https://c.marketingtechblog.com/wp-content/uploads/2008/01/cron.jpg
 [Elements of a Cron Job:]
 Most cron jobs include three components:
 	The script that is to be called or executed.
-	The command that executes the script on a recurring basis (typically set in the cPanel).
+	The command that executes the script on a recurring basis (typically set in the Panel).
 	The action or output of the script (which depends on what the script being called does).
 
 [Cron Job Limits]
