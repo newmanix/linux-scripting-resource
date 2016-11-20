@@ -14,10 +14,11 @@ and PHP/Python/Perl and is considered by many the platform of choice for develop
 deployment of high performance web applications which require a solid and reliable foundation. 
 It’s important to note the piece about it being open source, because who doesn’t like free, 
 especially when you’re starting out?!
-*found at https://www.turnkeylinux.org/lampstack
+*found at <a href="https://www.turnkeylinux.org/lampstack">Turnkey Linux</a>
 
-Alright, now that we’ve got the basics out of the way, let’s dig into the How-To of installing this stack in one easy step. First, you will need to have root privileges on your virtual private server (VPS). It will probably be running Ubuntu already, but if not you’ll want to install that first.
-
+Alright, now that we’ve got the basics out of the way, let’s dig into the How-To of installing this 
+stack in one easy step. First, you will need to have root privileges on your virtual private server (VPS). 
+It will probably be running Ubuntu already, but if not you’ll want to install that first.
 
 Here’s a snip-it of the code used to execute installing the LAMP.  
 
