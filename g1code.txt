@@ -1,0 +1,150 @@
+First, if you don't already have it, you will need to install the command line utility suite ImageMagick:
+
+<---start code-->
+# sudo is the command that tells Linux to run the following command as root
+# apt is the Advanced Packaging Tool, and apt-get tells it to find and download the package that is named
+# install tells it to install the package after downloading
+# imagemagick is the name of the package
+sudo apt-get install imagemagick
+
+
+<--end code-->
+
+
+<--start code-->
+# here follows simple commands to convert and resize files with ImageMagick
+# converts the png "spoon" in the images-raw directory into a jpg file with a 95% compression
+convert ~/images_raw/spoon.png -quality 95 spoon.jpg
+# resizes the jpg "spork" in the images-raw directory to a height of 500 pixels, maintaining aspect ratio
+convert ~/images_raw/spork.jpg -resize x500 spork.jpg
+
+<--end code-->
+
+But what we really want here is a script that we can schedule to run at regular intervals, and we need it to do the following things:
+1) Grab a png image
+2) Save the name from the png to give to the jpg
+3) Convert the png to a jpg
+4) Move the new file to a different directory
+5) Remove the old png file
+
+We're also going to have it output the old file name and new file name so we can see it's working. Here's what a simple version of that looks like:
+
+<--begin code-->
+#!/bin/bash is the standard way of commenting to say this is a bash script
+#cd is change directory, and then the directory you want it to work in
+cd ~/workspace/images_raw/
+# begins a for loop
+# for every file name that ends in .png                                                                                                 
+for FILENAME in *.png
+# do the following                                                                             
+do
+    # create a variable called NEWFILENAME and make it the old FILENAME 
+    # with .jpg substituted for .png
+    # See documentation below for an explanation of Shell Parameter Expansion                                 
+    NEWFILENAME="${FILENAME/%.png/.jpg}"
+    # this prints to the screen (echo) while allowing escape characters like tab (-e)
+    # the old file name and the new file name, so you can see that it's working 
+    # \t is a tab, so that the old file name and new file name line up neatly
+		echo -e "Old name: $FILENAME\t" "New name: $NEWFILENAME"  
+    # this is the convert command we used above, converting the file with the old name
+    # to the jpg file and giving it the new name
+    # && says that if and only if the previous command ran properly, do the next thing
+    # \ lets you line return in the middle of a line of code to make it more readable
+    convert "$FILENAME" "$NEWFILENAME" && \
+        # move the thing called NEWFILENAME to the converted_images folder 
+        mv "$NEWFILENAME" ~/workspace/converted_images/ && \
+        # remove the old file                                                      
+        rm "$FILENAME"	
+# done ends the do command, defining the point at which a single loop stops
+# and then, because this is a loop, it does it to every file that ends in .png in the directory
+done
+<--end code-->
+
+And here's what the code looks like without all the comments. It's really very short.
+
+<--begin code-->
+cd ~/workspace/images_raw/
+for FILENAME in *.png
+do                               
+    NEWFILENAME="${FILENAME/%.png/.jpg}"
+		echo -e "Old name: $FILENAME\t" "New name: $NEWFILENAME"  
+    convert "$FILENAME" "$NEWFILENAME" && mv "$NEWFILENAME" ~/workspace/converted_images/ && rm "$FILENAME"	
+done
+<--end code-->
+
+Paste that into a text file called convert_script.sh, save it in your home directory, and type bash convert_script.sh into the command line. You should see something like this:
+
+<beforerun.jpg>
+<afterrun.jpg>
+
+You can see in the first picture that the files on the left sidebar are in the images_raw directory, and then in the second picture the new jpgs are in the converted_images directory. You can also see in the console that it lists off the file names as it runs through the loop.
+
+
+
+There are always refinements you can add to it, extra things that will double check to make sure the new files really are jpgs, or tests for errors. But this is a basic script.
+
+
+
+
+
+
+Documentation for 3.5.3 Shell Parameter Expansion:
+
+<blockquote>${parameter/pattern/string}
+
+<br>The pattern is expanded to produce a pattern just as in filename expansion. Parameter is expanded and the longest match of pattern against its value is replaced with string. If pattern begins with ‘/’, all matches of pattern are replaced with string. Normally only the first match is replaced. If pattern begins with ‘#’, it must match at the beginning of the expanded value of parameter. If pattern begins with ‘%’, it must match at the end of the expanded value of parameter. If string is null, matches of pattern are deleted and the / following pattern may be omitted. If the nocasematch shell option (see the description of shopt in The Shopt Builtin) is enabled, the match is performed without regard to the case of alphabetic characters. If parameter is ‘@’ or ‘*’, the substitution operation is applied to each positional parameter in turn, and the expansion is the resultant list. If parameter is an array variable subscripted with ‘@’ or ‘*’, the substitution operation is applied to each member of the array in turn, and the expansion is the resultant list</blockquote>
+ 
+<br>-From <a href=https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html>the bash manual</A>.
+
+So <B>NEWFILENAME="${FILENAME/%.png/.jpg}"</B> says that the pattern for NEWFILENAME is to take a FILENAME that ends in .png and to copy it but replace .png with .jpg.
+
+
+Now we just need to schedule the cron job!
+
+First, open a new file in a text editor -- make sure it's a text editor and not a word processor -- and start with a MAILTO command. MAILTO tells crontab you want to be emailed with output from the job. On the next line, we'll tell it to discard everything but error messages, so that you only get notified if something goes wrong. A MAILTO command is just MAILTO=youremail@example.com, with whatever your actual email is.
+
+On a new line (very important), you're going to specify WHEN to schedule it. The first place is minutes (00-60), the second is hours (00-24, on 24-hour time, not 12-hour), the third is days (00-31), the fourth is months (00-12), and the fifth is day of the week (0-7). You can tell it to run every hour at fifteen minutes past the hour, every day at 12:15am, the first of every month, the fifth of May every year, or every Tuesday and Thursday, just for a few examples. Commas separate different schedulings within the same time from (00,30 in the minutes slot for on the hour and half hour, eg, or 3,5 in the days of the week slot for Tuesday and Thursday), and asterisks (*) says every instance of that slot (so, 00,30 * for every hour on the hour and half hour). Then you designate the path of the script to be run. This is followed by any other commands you want it to run when it runs your script. The commands MUST be on the same line as the scheduling. We're going to tell it to send all normal outputs to dev/null (which is like a trash can that's immediately emptied, or a black hole). Error messages, not being normal outputs, will go to the email address provided.
+
+End your file with a new line, always.
+
+We're going to schedule ours at 11:59pm every night. It looks like this:
+
+<--begin code>
+# the MAILTO line tells it to email you any output that is not otherwise directed
+MAILTO=youremail@gmail.com
+# this says that at 59 minutes past the 23rd hour (11pm)
+# on every day of every month of every year
+# so every day at 11:59pm
+# to run the script at ~/workspace/convert.sh
+# all output EXCEPT error messages will go to dev/null, which is like the trash
+# error messages go to your email
+59 23 * * * ~/workspace/convert.sh >/dev/null 
+#new line to end the file
+
+<--end code-->
+
+Or, without comments:
+
+<--begin code-->
+MAILTO=youremail@gmail.com
+59 23 * * * ~/workspace/convert.sh >/dev/null 
+<--end code-->
+
+Save the text file as cronjob.txt or something else that you'll recognize.
+
+Now you need to tell crontab that your text file is something it should pay attention to. Crontab installs your scheduling into cronjob, which will then actually run it at the specified time.
+
+Go to the command line and tell it to go to the directory your scheduling file is in, and then use the crontab command to tell it to pay attention to your job.
+
+(The $ below is the prompt, you don't type it. Hit return between commands.)
+
+<--begin code-->
+$ cd ~/workspace
+$ crontab cronjob.txt
+<--end code-->
+
+You can also view all of your scheduled jobs with the command crontab -l (that's a lowercase L, not a 1), and remove them all with crontab -r.
+
+Put all of your cron jobs into the same file. Designate your email once, at the top of the file, and then one line for each scheduled job and any commands related to it. End the file with a new line. 
+
+For more on cron jobs, check out The Site Wizard (https://www.thesitewizard.com/general/set-cron-job.shtml).
