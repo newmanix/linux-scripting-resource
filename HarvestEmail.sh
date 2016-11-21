@@ -57,9 +57,9 @@ else   # we have enough arguments
                 sed -i -- 's/\[@\]/@/g' workfile1.txt
                 sed -i -- 's/\.at\./@/gI' workfile1.txt
                 sed -i -- 's/ at /@/gI' workfile1.txt
-                sed -i -- 's/ (@) /@/gI' workfile1.txt
-                sed -i -- 's/(@)/@/gI' workfile1.txt
-                sed -i -- 's/ [@] /@/gI' workfile1.txt
+                sed -i -- 's/ (@) /@/g' workfile1.txt
+                sed -i -- 's/(@)/@/g' workfile1.txt
+                sed -i -- 's/ [@] /@/g' workfile1.txt
                 sed -i -- 's/ (at) /@/gI' workfile1.txt
                 sed -i -- 's/(at)/@/gI' workfile1.txt
                 sed -i -- 's/&#064;/@/g' workfile1.txt
@@ -70,24 +70,24 @@ else   # we have enough arguments
                 sed -i -- 's/(dot)/./gI' workfile1.txt
                 sed -i -- 's/\.invalid//gI' workfile1.txt
 
-               # last remove any common "REMOVEME" mungings
-                sed -i -- 's/\.REMOVETHIS\././g' workfile1.txt
-                sed -i -- 's/\.REMOVETHIS//g' workfile1.txt
-                sed -i -- 's/REMOVETHIS//g' workfile1.txt
-                sed -i -- 's/\.REMOVEME\././g' workfile1.txt
-                sed -i -- 's/\.REMOVEME\././g' workfile1.txt
-                sed -i -- 's/REMOVEME//g' workfile1.txt
-                sed -i -- 's/\.REMOVE\././g' workfile1.txt
-                sed -i -- 's/\.REMOVE//g' workfile1.txt
-                sed -i -- 's/REMOVE/./g' workfile1.txt
-                
-                # second grep for valid emails
+                # last remove any common "REMOVEME" mungings
+                sed -i -- 's/\.REMOVETHIS\././gI' workfile1.txt
+                sed -i -- 's/\.REMOVETHIS[:space:]?//gI' workfile1.txt
+                sed -i -- 's/REMOVETHIS//gI' workfile1.txt
+                sed -i -- 's/\.REMOVEME\././gI' workfile1.txt
+                sed -i -- 's/\.REMOVEME[:space:]?//gI' workfile1.txt
+                sed -i -- 's/REMOVEME//gI' workfile1.txt
+                sed -i -- 's/\.REMOVE\././gI' workfile1.txt
+                sed -i -- 's/.REMOVE[:space:]?//gI' workfile1.txt
+                sed -i -- 's/REMOVE//gI' workfile1.txt
+
+                # then grep for valid emails
                 grep -i -o '[A-Z0-9._%+-]\+@[A-Z0-9.-]\+\.[A-Z]\{2,4\}' workfile1.txt > workfile2.txt
                 
                 cat workfile2.txt >> $TargetFile
-                cat workfile2.txt | wc -w > countfile.txt
-                        
-                let filecount=`cat countfile.txt`
+
+                # use the let command to do math
+                let filecount=`cat workfile2.txt | wc -w`
                 let emailcount=$emailcount+$filecount
                 
                 echo "}}     $filecount emails harvested"
@@ -103,7 +103,7 @@ else   # we have enough arguments
 fi
 
 # cleanup temp files
-rm countfile.txt workfile1.txt workfile2.txt
+rm -f workfile1.txt workfile2.txt
 
 echo "}}   Total emails harvested was $emailcount"  
 echo "}}   HarvestEmail.sh returns errorlevel $ReturnFlag"
