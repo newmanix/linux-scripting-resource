@@ -20,7 +20,7 @@
 				<li ><a href="#">Home</a></li>
 				<li><a href="#">Group 1</a></li>
 				<li><a href="#">Group 2</a></li>
-                <li class="current_page_item"><a href="#">Group 3</a></li>
+        <li class="current_page_item"><a href="#">Group 3</a></li>
 				<li><a href="#">Group 4</a></li>
 			</ul>
 		</div>
@@ -33,36 +33,63 @@
 		  <div class="post">
 				<h2 class="title"><a href="#">Work of group 3: ﻿Regex Tutorial  </a></h2>
 				<div class="entry">
-					<p>A regular expression, regex or regexp, is a sequence of characters that define a search pattern. Usually this pattern is then used by string searching algorithms for "find" or "find and replace" operations on strings.
+					<h2>What is a regular expression?</h2>
+					<p><pre>
+ A regular expression, also called a “regex”, is a pattern that describes a set of text strings. This
+ pattern is used by string searching algorithms for "find" or "find and replace" operations on strings.
+ Usually a regex contains characters (for literal meaning), anchors (the position in the text, such
+ as ^, $) and modifier (to expand or narrow the range of text, such as *, \).
 
+</pre><h2>Regex are divided into 3 different types:</h2><pre>
+
+ 1. Basic regular expressions
+ 2. Interval regular expressions
+ 3. Extended regular expressions
+
+</pre><h2> Here are the commonly used basic regular expressions:</h2><pre>
+
+ Symbol          Description
+ . (dot)         a single character
+ ?               the preceding character matches 0 or 1 times only
+ *               the preceding character matches 0 or more times
+ +               the preceding character matches 1 or more times
+ ()              group several characters to behave as one
+ |               the logical OR operation
+ ^               matches the beginning of the string
+ $               matches the end of the string
+
+
+
+</pre><h2>  What are grep and sed command?</h2><pre>
+
+ Grep is short for “Global Regular Expression Print”. Grep command is used to search texts or files
+ that match the given pattern and print the matching result.
+
+ </pre>
           </p>
 
 			</div>
 		  </div>
 			<div class="post">
-				<h2 class="title"><a href="#">﻿Regex Tutorial - Working Doc to gather samples</a></h2>
-				<p class="meta">Group 3</p>
+				<h2 class="title"><a href="#">﻿Regex Tutorial </a></h2>
 				<div class="entry">
-					<pre>
-
-
-Regular Expression Examples that can be included for webpage
-
+					<p><pre>
 
 These are basic regular expressions that do not require any options
 
 
 * - match zero or more characters
 . - match any single character
-    example - a*t would match any string of characters starting with “a” and ending with “t”;
-		 including at, art, aspect, etc.
-        - a.t would match any 3 characters starting with “a” and ending with “t”; including art,
-				 ant but not at or aspect
+    example - a*t would match any string of characters starting with “a” and ending with
+		           “t”; including at, art, aspect, etc.
+            - a.t would match any 3 characters starting with “a” and ending with “t”;
+				       including art, ant but not at or aspect
 
 
 ^ - anchor for start of line
 $ - anchor for end of line
-    example - ls -l | grep ^- shows only lines starting with “-” which are the files not folders
+    example - ls -l | grep ^- shows only lines starting with “-” which are the files not
+		                              folders
             - ^$ would match empty lines
 
 
@@ -76,7 +103,124 @@ $ - anchor for end of line
 
 
 <> - provide whole words to match
-    example - <sand> matches the whole word "sand" but not “sandbox”</pre>
+    example - <sand> matches the whole word "sand" but not “sandbox”
+
+		</pre></p>
+             <pre><code>
+		#!/bin/bash
+#  HarvestEmail.sh - general email harvester utility
+#    requires at least 2 arguments
+#       $1 is Name of file to which we append harvested emails
+#       $2-$n are the names of files in which we search for emails
+#
+
+StartTime=`date`
+# echo initial startup date and time for logging
+<span style="color:#47d147">echo</span>"}} HarvestEmail.sh initiated at $StartTime"
+
+# set the initial state of ReturnFlag as 0 or no errors encountered.
+ReturnFlag="0"
+
+# create counter for emails
+let emailcount=0
+
+<span style="color:#ff4d4d">if</span> [ $# -lt 2 ];  # Do we have less than the required 2 arguments
+<span style="color:#ff4d4d">then</span>   # not enough arguments so show usage text
+    # Usage
+    <span style="color:#47d147">echo</span>"}}"
+    <span style="color:#47d147">echo</span>"** Error: HarvestEmail.sh requires at least 2 arguments"
+    <span style="color:#47d147">echo</span>"}}"
+    <span style="color:#47d147">echo</span>"}} Usage - bash HarvestEmail.sh (target-file) (file-1) ... (file-n)"
+    <span style="color:#47d147">echo</span>"}}    target-file is the folder to which harvested emails will be added"
+    <span style="color:#47d147">echo</span>"}}    file-1 thru file-n are one or more files from which to harvest emails"
+    <span style="color:#47d147">echo</span>"}}"
+
+    ReturnFlag="1"
+
+<span style="color:#ff4d4d">else</span>   # we have enough arguments
+    # create TargetFile variable
+    TargetFile=$1
+
+    # Shift, so we are left with a list of files to search
+    shift
+
+    # echo command line arguments for logging
+    <span style="color:#47d147">echo</span>"}}   Target File to append harvested emails is $TargetFile"
+
+    #loop through remaining arguments and echo
+    <span style="color:#ff4d4d">for</span> searchfile in "$@"
+    <span style="color:#ff4d4d">do</span>
+        # confirm this searchfile exists before searching
+        <span style="color:#ff4d4d">if</span> [ -f $searchfile ]
+        <span style="color:#ff4d4d">then</span> # searchfile exists
+            <span style="color:#47d147">echo</span> "}}   Searching $searchfile"
+
+            # begin harvest emails from searchfile
+            # create temp copy for processing
+            <span style="color:#47d147">cp</span> $searchfile workfile1.txt -f
+
+            <span style="color:#ff4d4d">if</span> [ $? -eq 0 ]
+            <span style="color:#ff4d4d">then</span> # successfully copied this searchfile to workfile.txt
+
+                # first remove and replace any common mungings to make valid emails
+                <span style="color:#47d147">sed</span> -i -- 's/\[@\]/@/g' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/\.at\./@/gI' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/ at /@/gI' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/ (@) /@/gI' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/(@)/@/gI' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/ [@] /@/gI' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/ (at) /@/gI' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/(at)/@/gI' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/&#064;/@/g' workfile1.txt
+
+                <span style="color:#47d147">sed</span> -i -- 's/\.dot\././gI' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/ dot /./gI' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/ (dot) /./gI' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/(dot)/./gI' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/\.invalid//gI' workfile1.txt
+
+               # last remove any common "REMOVEME" mungings
+                <span style="color:#47d147">sed</span> -i -- 's/\.REMOVETHIS\././g' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/\.REMOVETHIS//g' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/REMOVETHIS//g' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/\.REMOVEME\././g' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/\.REMOVEME\././g' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/REMOVEME//g' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/\.REMOVE\././g' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/\.REMOVE//g' workfile1.txt
+                <span style="color:#47d147">sed</span> -i -- 's/REMOVE/./g' workfile1.txt
+
+                # second grep for valid emails
+                <span style="color:#47d147">grep</span> -i -o '[A-Z0-9._%+-]\+@[A-Z0-9.-]\+\.[A-Z]\{2,4\}' workfile1.txt > workfile2.txt
+
+                <span style="color:#47d147">cat</span> workfile2.txt >> $TargetFile
+                <span style="color:#47d147">cat</span> workfile2.txt | wc -w > countfile.txt
+
+                <span style="color:#47d147">let</span> filecount=`cat countfile.txt`
+                <span style="color:#47d147">let</span> emailcount=$emailcount+$filecount
+
+                <span style="color:#47d147">echo</span> "}}     $filecount emails harvested"
+            <span style="color:#ff4d4d">else</span> # error returned when copying searchfile
+                <span style="color:#47d147">echo</span> "** File IO ERROR searching file $searchfile"
+                ReturnFlag="1"
+            fi
+        <span style="color:#ff4d4d">else</span> # searchfile does not exist
+            <span style="color:#47d147">echo</span> "**  ERROR File $searchfile does not exist"
+            ReturnFlag="2"
+        fi
+    done
+fi
+
+# cleanup temp files
+<span style="color:#47d147">rm</span> countfile.txt workfile1.txt workfile2.txt
+
+<span style="color:#47d147">echo</span> "}}   Total emails harvested was $emailcount"
+<span style="color:#47d147">echo</span> "}}   HarvestEmail.sh returns errorlevel $ReturnFlag"
+<span style="color:#47d147">echo</span> "}} HarvestEmail.sh terminated at `date`"
+exit $ReturnFlag
+
+
+		       	</code></pre>
 				</div>
 
 			</div>
@@ -85,13 +229,13 @@ $ - anchor for end of line
 		<div id="sidebar">
 			<ul>
 
-					<h2>Other groups: </h2>
+					<h2> Resources:</h2>
 					<ul>
-						<li><a href="#">Group1</a></li>
-						<li><a href="#">Group2</a></li>
-						<li><a href="#">Group3</a></li>
-						<li><a href="#">Group4</a></li>
-						<li><a href="#">Group5</a></li>
+
+						<li><a href="http://www.linuxnix.com/regular-expressions-linux-i/">http://www.linuxnix.com/regular-expressions-linux-i/</a></li>
+						<li><a href="http://ryanstutorials.net/linuxtutorial/grep.php">http://ryanstutorials.net/linuxtutorial/grep.php</a></li>
+						<li><a href="https://www.techonthenet.com/linux/commands/grep.php">https://www.techonthenet.com/linux/commands/grep.php</a></li>
+						<li><a href="https://www.cyberciti.biz/faq/howto-use-grep-command-in-linux-unix/">https://www.cyberciti.biz/faq/howto-use-grep-command-in-linux-unix/</a></li>
 
 					</ul>
 				</li>
@@ -103,7 +247,7 @@ $ - anchor for end of line
 	</div>
 
 	<footer>
-		&copy; Untitled. All rights reserved. 
+		&copy; Untitled. All rights reserved.
 	</footer>
 
 </body>
