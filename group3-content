@@ -1,0 +1,37 @@
+What is a regular expression?
+A regular expression, also called a “regex”, is a pattern that describes a set of text strings. This pattern is used by string searching algorithms for "find" or "find and replace" operations on strings. Usually a regex contains characters (for literal meaning), anchors (the position in the text, such as ^, $) and modifier (to expand or narrow the range of text, such as *, \).
+
+Regex are divided into 3 different types:
+1. Basic regular expressions
+2. Interval regular expressions
+3. Extended regular expressions
+
+Here are the commonly used basic regular expressions:
+Symbol          Description
+. (dot)         a single character
+?               the preceding character matches 0 or 1 times only
+*               the preceding character matches 0 or more times
++               the preceding character matches 1 or more times
+()              group several characters to behave as one
+|               the logical OR operation
+^               matches the beginning of the string
+$               matches the end of the string
+ 
+
+
+
+What are grep and sed command?
+Grep is short for “Global Regular Expression Print”. Grep command is used to search texts or files that match the given pattern and print the matching result. 
+
+
+
+
+
+
+
+
+Resources: 
+http://www.linuxnix.com/regular-expressions-linux-i/
+http://ryanstutorials.net/linuxtutorial/grep.php
+https://www.techonthenet.com/linux/commands/grep.php
+https://www.cyberciti.biz/faq/howto-use-grep-command-in-linux-unix/
