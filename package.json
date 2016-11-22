@@ -1,0 +1,20 @@
+{
+  "name": "npmscripts",
+  "version": "1.0.0",
+  "description": "class project for command line automation",
+  "main": "index.js",
+  "scripts": {
+    "postgitAll": "echo 'your stuff has been committed!' && git status",
+    "gitAll": "git add . && git commit",
+    "test": "echo '=>running tests!' && mocha ",
+    "start": "cowsay 'congrats, you started a server' "
+  },
+  "author": "Gus Crowley",
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "cowsay": "^1.1.8"
+  }
+}
