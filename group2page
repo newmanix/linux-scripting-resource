@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<title>Familiar by TEMPLATED</title>
+
+<meta name="keywords" content="" />
+
+<meta name="description" content="" />
+
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+
+</head>
+
+<body>
+
+	<div id="logo">
+
+		<h1>ITC134 FL16 LINUX Shell Resource</h1>
+
+	</div>
+
+	<hr />
+
+
+
+	<header>
+
+		<div id="menu">
+
+			<ul>
+
+				<li class="current_page_item"><a href="#">Home</a></li>
+
+				<li class="current_page_item"><a href="#">Group 1</a></li>
+
+				<li class="current_page_item"><a href="#">Group 2</a></li>
+
+                <li class="current_page_item"><a href="#">Group 3</a></li>
+
+                <li class="current_page_item"><a href="#">Group 4</a></li>
+
+                <li class="current_page_item"><a href="#">Group 5</a></li>
+
+			</ul>
+
+		</div>
+
+
+
+
+
+	</header>
+
+
+
+	<div id="page">
+
+		<div id="content">
+
+		  <div class="post">
+
+				<h2 class="title"><a href="#">Group 2: Loops in Shell Script</a></h2>
+
+				<div class="entry">
+
+                    <p>Body of a Loop - The single statement or a block of statements that can be repeated (a loop may not execute at all if the condition is false to start with). In Java the body of the loop is either the first statement following a while or for loop is the body of the loop or a block of statements enclosed in { and }.</p>
+                    
+                    <p>For Loop - A loop that has a header with 3 optional parts: initialization, condition, and change. It does the initialization one time before the body of the loop executes, executes the body of the loop if the condition is true, and executes the change after the body of the loop executes before checking the condition again.
+                    </p>
+                    
+                    <p>For Each Loop - Used to loop through all the elements of a collection (like a list or an array) and each time through the loop set a variable to the next item from the collectionInfinite Loop - A loop that never ends.
+                    </p>
+                    
+                    <p>Loop - A way to repeat one or more statements in a program.Nested Loop - One loop inside of another.Out of Bounds error - A run-time error that occurs when you try to access past the end of a string or list in a loop.Trace Code - Writing down the values of the variables and how they change each time the body of the loop executes.While Loop - A loop that repeats while a Boolean expression is true.
+                    </p>
+				
+
+
+
+
+					
+					
+
+
+
+
+		
+
+
+		
+
+	
+
+
+
+		
+
+	
+
+		
+			
+			[12:53]
+			
+	
+
+
+		
+
+	
+		
+			
+										
+					
+				
+
+					
+					
+
+					
+					
+			
+				
+		
+			that's a concise summary of loops atleast from python stand point!</p>
+
+
+
+			</div>
+
+		  </div>
+
+			<div class="post">
+
+				<h2 class="title"><a href="#">Loop Code Snippets</a></h2>
+
+				<p class="meta">
+                    #! /bin/bashfor 
+                    (( i = 0 ; i <= 9; i++ ))
+                    doecho "This is file $i" > $i.
+                    done
+                </p>
+
+				<div class="entry">
+
+//insert stuff here
+
+				</div>
+
+
+
+			</div>
+
+
+
+		</div>
+
+		<div id="sidebar">
+
+			<ul>
+
+
+
+					<h2>Resource Links: </h2>
+
+					<ul>
+
+						<li><a href="#">Group1</a></li>
+
+						<li><a href="#">Group2</a></li>
+
+						<li><a href="#">Group3</a></li>
+
+						<li><a href="#">Group4</a></li>
+
+						<li><a href="#">Group5</a></li>
+
+
+
+					</ul>
+
+				</li>
+
+
+
+			</ul>
+
+		</div>
+
+
+
+		<div style="clear: both;">&nbsp;</div>
+
+	</div>
+
+
+
+	<footer>
+
+		&copy; Untitled. All rights reserved. 
+
+	</footer>
+
+
+
+</body>
+
+</html>
