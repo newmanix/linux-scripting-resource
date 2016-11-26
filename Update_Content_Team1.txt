@@ -1,3 +1,7 @@
+itc134 fl16 linux shell resource
+
+Group 1: Cron: Automate and Schedule Scripts
+
 [Graphic Example 1]
 http://www.networknuts-web.biz/wp-content/uploads/2014/10/cron-logo.png
 
@@ -26,20 +30,26 @@ http://www.pc-freak.net/images/crontab-execute-cron-jobs-every-second-on-linux-c
 https://c.marketingtechblog.com/wp-content/uploads/2008/01/cron.jpg
 
 [Elements of a Cron Job:]
-Most cron jobs include three components:
-	The script that is to be called or executed.
-	The command that executes the script on a recurring basis (typically set in the Panel).
-	The action or output of the script (which depends on what the script being called does).
+- Most cron jobs include three components:
+- The script that is to be called or executed.
+- The command that executes the script on a recurring basis (typically set in the Panel).
+- The action or output of the script (which depends on what the script being called does).
 
 [Cron Job Limits]
 Shared and Reseller:
 You may NOT run a cron job more often than every 15 minutes.
 VPS and Dedicated Server:
 You may run a cron job as often as desired.
-It isn’t suitable for complex, event-driven tasks.
+It isnâ€™t suitable for complex, event-driven tasks.
 Not flexible for running tasks
 No queueing for cron: no specific ordering of jobs. 
-Won’t be able to protect resources from having too many things running out of it at once.
+Wonâ€™t be able to protect resources from having too many things running out of it at once.
+
+Let's get started!
+
+In this example we have a script that resizes images and a cron job that schedules and executes the script.
+
+[Code Snips and instructions]
 
 [Learn More:]
 http://www.unixgeeks.org/security/newbie/unix/cron-1.html
