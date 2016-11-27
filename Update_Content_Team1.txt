@@ -59,5 +59,4 @@ http://www.nncron.ru/help/EN/working/cron-format.htm#STARTTIME
 
 [Citations]
 1 http://www.makeuseof.com/tag/5-beginner-linux-setup-ideas-cron-jobs-shell-scripts/
-2 http://support.hostgator.com/articles/cpanel/what-are-cron-jobs
-3 https://www.helpsystems.com/resources/articles/cron-scheduling-old-fallback
+2 https://www.helpsystems.com/resources/articles/cron-scheduling-old-fallback
