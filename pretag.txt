@@ -1,0 +1,32 @@
+Copy the lamp.h file to current working directory after you have copied the file you will need to allow scripts to run on your machine.
+
+<pre> chmod +x lamp.sh </pre>
+
+Once you have enabled scripts to run on your machine you will need start running the script.
+
+<pre> sudo ./lamp.sh </pre>
+
+Let's examine the script to see what it does after the echo statements we update all the repositries on the machine.
+
+<pre> sudo apt-get update </pre>
+
+Then we proceed to install the Apache server on the local machine.
+
+<pre> sudo apt-get -y install apache2 </pre>
+
+Now need set the root password for MySQL using debconf we are setting the root password to MYPASSWORD123.
+
+<pre>s udo debconf-set-selections <<< 'mysql-server mysql-server/root_password password MYPASSWORD123'
+sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password MYPASSWORD123' </pre>
+
+After setting the root password we can now install MySQL Server.
+
+<pre> sudo apt-get -y install mysql-server mysql-client </pre>
+
+Finally we are now going to install PHP7.0 with MySQL, Curl, Json and CGI configured along with Apache2.
+
+<pre>sudo apt-get -y install php7.0-mysql php7.0-curl php7.0-json php7.0-cgi php7.0 libapache2-mod-php7 </pre>
+
+The last thing we need to do is restart the system and verify it works
+
+<pre> sudo systemctl restart apache2 </pre>
