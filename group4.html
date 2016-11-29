@@ -53,7 +53,42 @@
                 
 				
 				<div class="entry">
-                <h3>Here’s a snip-it of the code used to execute installing the LAMP.</h3>
+                <h3>Here’s snip-its of the code used to execute installing the LAMP.</h3>
+                    
+                    
+                    <p>Copy the lamp.h file to current working directory after you have copied the file you will need to allow scripts to run on your machine.</p>
+
+                    <pre>chmod +x lamp.sh </pre>
+
+                    <p>Once you have enabled scripts to run on your machine you will need start running the script.</p>
+
+                    <pre>sudo ./lamp.sh </pre>
+
+                    <p>Let's examine the script to see what it does after the echo statements we update all the repositries on the machine.</p>
+
+                    <pre>sudo apt-get update </pre>
+
+                    <p>Then we proceed to install the Apache server on the local machine.</p>
+
+                    <pre>sudo apt-get -y install apache2 </pre>
+
+                    <p>Now need set the root password for MySQL using debconf we are setting the root password to MYPASSWORD123.</p>
+
+                    <pre>sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password MYPASSWORD123'</pre>
+                    <pre>sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password MYPASSWORD123' </pre>
+
+                    <p>After setting the root password we can now install MySQL Server.</p>
+
+                    <pre>sudo apt-get -y install mysql-server mysql-client </pre>
+
+                    <p>Finally we are now going to install PHP7.0 with MySQL, Curl, Json and CGI configured along with Apache2.</p>
+
+                    <pre>sudo apt-get -y install php7.0-mysql php7.0-curl php7.0-json php7.0-cgi php7.0 libapache2-mod-php7 </pre>
+
+                    <p>The last thing we need to do is restart the system and verify it works</p>
+
+                    <pre>sudo systemctl restart apache2 </pre>
+                    
                 <h3>For a more in depth step by step process look here: <a href= ”https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu”>LAMP Installation Guide </a></h3>
 				</div>
 
