@@ -32,31 +32,42 @@
 	<div id="page">
 		<div id="content">
 		  <div class="post">
-				<h2 class="title"><a href="#">Work of Group 4: Lamp Stack Deployment</a></h2>
+				<h2 class="title">Work of Group 4: Lamp Stack Deployment</h2>
 				<div class="entry">
-					<p>So you’re setting up a server for your website and you’ve decided to go with the LAMP stack. This requires installing Linux, Apache, PHP, and MySQL…, but you just don’t have a lot of time. Sure would be nice if there was a way to automate the process, kind of do it all in one step!</p>
+					<p>So you’re setting up a server for your website and you’ve decided to go with the LAMP stack. 
+					This requires installing Linux, Apache, PHP, and MySQL…, but you just don’t have a lot of time. 
+                                        Sure would be nice if there was a way to automate the process, kind of do it all in one step!</p>
                     
-                    <p>Ok, some of you may be new to this and wondering “What is the LAMP stack?” Let’s start with a “stack” which is simply a group of applications or programs placed on a server to support websites. These programs work together and support the various pieces of the website. The LAMP stack, as you may have guessed, includes the abovementioned programs: Linux, Apache, MySQL, and PHP/Python/Perl (depends which of the three you choose to work with.)</p>
+                    <p>Ok, some of you may be new to this and wondering “What is the LAMP stack?” Let’s start with a “stack” which is 
+			simply a group of applications or programs placed on a server to support websites. These programs work together 
+			and support the various pieces of the website. The LAMP stack, as you may have guessed, includes the abovementioned 
+			programs: Linux, Apache, MySQL, and PHP/Python/Perl (depends which of the three you choose to work with.)</p>
                     
-                    <p>Here’s a really great definition* of LAMP stack: LAMP stack is a popular open source web platform commonly used to run dynamic web sites and servers. It includes Linux, Apache, MySQL, and PHP/Python/Perl and is considered by many the platform of choice for development and deployment of high performance web applications which require a solid and reliable foundation. It’s important to note the piece about it being open source, because who doesn’t like free, especially when you’re starting out?!</p>
+                    <p>Here’s a really easy to understand definition* of LAMP stack: LAMP stack is a popular open source web platform 
+			commonly used to run dynamic web sites and servers. It includes Linux, Apache, MySQL, and PHP/Python/Perl 
+			and is considered by many the platform of choice for development and deployment of high performance web 
+			applications which require a solid and reliable foundation. It’s important to note the piece about it being 
+			open source, because who doesn’t like free, especially when you’re starting out?!</p>
                     <p>*found at <a href="https://www.turnkeylinux.org/lampstack">Turnkey Linux</a></p>
                     
-                    <p>Alright, now that we’ve got the basics out of the way, let’s dig into the How-To of installing this stack in one easy step.First, you will need to have root privileges on your virtual private server (VPS). 
-                    It will probably be running Ubuntu already, but if not you’ll want to install that first.</p>
+                    <p>Now that we’ve got the basics out of the way, let’s dig into the How-To of installing this stack in one easy step. 
+			First, you will need to have root privileges on your virtual private server (VPS). It will probably be running 
+			Ubuntu already, but if not you’ll want to install that first.</p>
                     
                     
 
 			</div>
 		  </div>
 			<div class="post">
-				<h2 class="title"><a href="#">Lamp Stack Deployment Code Snippets</a></h2>
+				<h2 class="title">Lamp Stack Deployment Code Snippets</h2>
                 
 				
 				<div class="entry">
-                <h3>Here’s snip-its of the code used to execute installing the LAMP.</h3>
+                <h3>Here are snip-its of the code you will use to execute installing the LAMP stack and what steps they fulfill.</h3>
                     
                     
-                    <p>Copy the lamp.h file to current working directory after you have copied the file you will need to allow scripts to run on your machine.</p>
+                    <p>Copy the lamp.sh file to the current working directory. After you have copied the file you will need to allow 
+			scripts to run on your machine.</p>
 
                     <pre>chmod +x lamp.sh </pre>
 
@@ -64,7 +75,8 @@
 
                     <pre>sudo ./lamp.sh </pre>
 
-                    <p>Let's examine the script to see what it does after the echo statements we update all the repositries on the machine.</p>
+                    <p>Let's examine the script to see what it does. After the echo statements we update all the 
+			repositories on the machine.</p>
 
                     <pre>sudo apt-get update </pre>
 
@@ -72,24 +84,24 @@
 
                     <pre>sudo apt-get -y install apache2 </pre>
 
-                    <p>Now need set the root password for MySQL using debconf we are setting the root password to MYPASSWORD123.</p>
+                    <p>Now need set the root password for MySQL; using debconf we will set the root password to MYPASSWORD123.</p>
 
-                    <pre>sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password MYPASSWORD123'</pre>
-                    <pre>sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password MYPASSWORD123' </pre>
+                    <pre>sudo debconf-set-selections  'mysql-server mysql-server/root_password password MYPASSWORD123'</pre>
+                    <pre>sudo debconf-set-selections  'mysql-server mysql-server/root_password_again password MYPASSWORD123' </pre>
 
-                    <p>After setting the root password we can now install MySQL Server.</p>
+                    <p>Having set the root password we can now install MySQL Server.</p>
 
                     <pre>sudo apt-get -y install mysql-server mysql-client </pre>
 
-                    <p>Finally we are now going to install PHP7.0 with MySQL, Curl, Json and CGI configured along with Apache2.</p>
+                    <p>Finally, we are going to install PHP7.0 with MySQL, Curl, Json and CGI configured along with Apache2.</p>
 
                     <pre>sudo apt-get -y install php7.0-mysql php7.0-curl php7.0-json php7.0-cgi php7.0 libapache2-mod-php7 </pre>
 
-                    <p>The last thing we need to do is restart the system and verify it works</p>
+                    <p>The last thing we need to do is restart the system and verify it works:</p>
 
                     <pre>sudo systemctl restart apache2 </pre>
                     
-                <h3>For a more in depth step by step process look here: <a href= ”https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu”>LAMP Installation Guide </a></h3>
+                <h3>For a more in depth step by step process please view <a href= "https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu">LAMP Installation Guide </a></h3>
 				</div>
 
 			</div>
