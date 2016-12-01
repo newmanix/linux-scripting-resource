@@ -34,9 +34,16 @@
 		  <div class="post">
 				<h2 class="title"><a href="#">Group 5: ﻿Node Package Manager</a></h2>
 				<div class="entry">
-					<p>Description
-
-          </p>
+					<p>
+                        A script written using the Node.js Package Manager to automate the creation and interaction of a Git repository. 
+                        The script provides the function to start a repository, commit to a repository and view the status of a repository via
+                        commands groups that are easily executed using the following commands:
+                    </p>
+                    <ul>
+                        <li>postgitAll: Command will alter user of a successful commitment and run a git status command to show a clean workspace</li>
+                        <li>gitAll: Command will execute the git add . and git commit commands sequentiually. This will allow a user to add a change to the staging area and commit the change within one command.</li>
+                        <li>start: Command will start a server to establish a repository within.</li>
+                    </ul>
 
 			</div>
 		  </div>
@@ -45,9 +52,27 @@
 				<p class="meta">Group 5</p>
 				<div class="entry">
 					<pre>
-
-
-Code Examples</pre>
+                    {
+                      "name": "npmscripts",
+                      "version": "1.0.0",
+                      "description": "class project for command line automation",
+                      "main": "index.js",
+                      "scripts": {
+                        "postgitAll": "echo 'your stuff has been committed!' && git status",
+                        "gitAll": "git add . && git commit",
+                        "test": "echo '=>running tests!' && mocha ",
+                        "start": "cowsay 'congrats, you started a server' "
+                      },
+                      "author": "Gus Crowley",
+                      "license": "ISC",
+                      "dependencies": {
+                      },
+                      "devDependencies": {
+                        "chai": "^3.5.0",
+                        "cowsay": "^1.1.8"
+                      }
+                    }
+                    </pre>
 				</div>
 
 			</div>
