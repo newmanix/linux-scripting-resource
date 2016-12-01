@@ -1,13 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!doctype html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    
 <title>Group 1</title>
+<meta charset="utf-8" />
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link href="css/style1.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/style1.css" type="text/css" media="screen" />
+    
 </head>
+    
 <body>
 	<div id="logo">
 		<h1>ITC134 FL16 LINUX Shell Resource</h1>
@@ -42,7 +45,7 @@
                     
 <h2>What are they good for?</h2>
                     
-<p>Cron is a Linux/Unix utility which schedules a command or script on your server to run automatically at a specified time and date. A cron job is the scheduled task itself. Cron jobs can be very useful to automate repetitive tasks.</p>
+<p>Cron is a Linux/Unix utility, which schedules a command or script on your server to run automatically at a specified time and date. A cron job is the scheduled task itself. Cron jobs can be very useful to automate repetitive tasks.</p>
 <p>For example, you can set a cron job to delete temporary files every week to conserve your disk space. Some programs, such as Drupal, may even require you to set up a cron job to perform certain functions.</p>
 <p>Also, you might use a cron job to send out an email report on a daily basis, or to update some cached data every 10 minutes, or refresh summary information once an hour.</p>
 <p>Scripts executed as a cron job are typically used to modify files or databases. However, they can perform other tasks that do not modify data on the server, like sending out email notifications.</p>
@@ -66,12 +69,13 @@
                     
 <h3>Cron Job Limits</h3>
                     
-<p>You may NOT run a cron job more often than every minute.<br />        VPS and Dedicated Server:<br />
-You may run a cron job as often as desired.<br />
-It isn't suitable for complex, event-driven tasks.<br />
-Not flexible for running tasks<br />
-No queueing for cron: no specific ordering of jobs.<br />
-Won't be able to protect resources from having too many things running out of it at once.</p>
+<ul>
+    <li>You may NOT run a cron job more often than every minute.</li>        
+    <li>It isn't suitable for complex, event-driven tasks.</li>
+    <li>Not flexible for running tasks.</li>
+    <li>No queueing for cron: no specific ordering of jobs.</li>
+    <li>Won't be able to protect resources from having too many things running out of it at once.</li>
+</ul>
 
     <p><strong><i>Let's get started!</i></strong></p>
 
@@ -102,7 +106,7 @@ convert ~/images_raw/spork.jpg -resize x500 spork.jpg
     <li>Save the name from the png to give to the jpg</li>
     <li>Convert the png to a jpg</li>
     <li>Move the new file to a different directory</li>
-    <li>Remove the old png file
+    <li>Remove the old png file</li>
 </ol>
 
 <p>We're also going to have it output the old file name and new file name so we can see it's working. Here's what a simple version of that looks like:</p>
@@ -170,13 +174,15 @@ done
 
 <h2>Documentation for 3.5.3 Shell Parameter Expansion:</h2>
 
-<p>
+
 <blockquote>
-${parameter/pattern/string}<br /><br />
-The pattern is expanded to produce a pattern just as in filename expansion. Parameter is expanded and the longest match of pattern against its value is replaced with string. If pattern begins with '/', all matches of pattern are replaced with string. Normally only the first match is replaced. If pattern begins with '#', it must match at the beginning of the expanded value of parameter. If pattern begins with '%', it must match at the end of the expanded value of parameter. If string is null, matches of pattern are deleted and the / following pattern may be omitted. If the nocasematch shell option (see the description of shopt in The Shopt Builtin) is enabled, the match is performed without regard to the case of alphabetic characters. If parameter is ë@í or ë*í, the substitution operation is applied to each positional parameter in turn, and the expansion is the resultant list. If parameter is an array variable subscripted with '@' or '*', the substitution operation is applied to each member of the array in turn, and the expansion is the resultant list <br />
+<p>
+&#36;{parameter/pattern/string}<br />
+The pattern is expanded to produce a pattern just as in filename expansion. Parameter is expanded and the longest match of pattern against its value is replaced with string. If pattern begins with '/', all matches of pattern are replaced with string. Normally only the first match is replaced. If pattern begins with '#', it must match at the beginning of the expanded value of parameter. If pattern begins with '%', it must match at the end of the expanded value of parameter. If string is null, matches of pattern are deleted and the / following pattern may be omitted. If the nocasematch shell option (see the description of shopt in The Shopt Builtin) is enabled, the match is performed without regard to the case of alphabetic characters. If parameter is '@' or '*', the substitution operation is applied to each positional parameter in turn, and the expansion is the resultant list. If parameter is an array variable subscripted with '@' or '*', the substitution operation is applied to each member of the array in turn, and the expansion is the resultant list <br />
 -From <a href="https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html" target="_blank">the bash manual</a>.
-</blockquote><br />
 </p>
+</blockquote><br />
+
 
 <p>So <b>NEWFILENAME="${FILENAME/%.png/.jpg}"</b> says that the pattern for NEWFILENAME is to take a FILENAME that ends in .png and to copy it but replace .png with .jpg.</p>
 
@@ -257,7 +263,7 @@ $ crontab cronjob.txt
     
 			</div>
 		  </div>
-			<div class="post">
+			<!--<div class="post">
 				<h2 class="title"><a href="#"></a></h2>
 				<p class="meta"></p>
 				<div class="entry">
@@ -265,10 +271,10 @@ $ crontab cronjob.txt
 				</div>
 
 			</div>
-
+            -->
 		</div>
 		<div id="sidebar">
-			<ul>
+			
 
 					<h2>Resource Links: </h2>
 					<ul>
@@ -279,9 +285,9 @@ $ crontab cronjob.txt
 						<li><a href="group5.html">Group5</a></li>
 
 					</ul>
-				</li>
+				
 
-			</ul>
+			
 		</div>
 
 		<div style="clear: both;">&nbsp;</div>
